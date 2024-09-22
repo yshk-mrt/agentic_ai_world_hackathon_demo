@@ -40,7 +40,7 @@ async def send_message_to_openai(ctx: Context, msg: Request, system_prompt: str)
         }
     )
     response_text = response.choices[0].message.content
-    ctx.logger.info(f"Response: {response_text}")
+    ctx.logger.info(f"{response_text}")
     return response_text
 
 async def handle_message_common(ctx: Context, sender: str, msg: Request, system_prompt: str, name: str):
