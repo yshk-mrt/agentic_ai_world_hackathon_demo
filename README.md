@@ -45,6 +45,8 @@ Powered by Llama language model hosted on Groq
 
 ## Sample output
 **This output is a naive implementation that directly uses LLM output, and does not guarantee any political legitimacy. Please enjoy it as complete fiction.**
+
+The moderator demonstrated the capability of asking a followup question to the same speaker to deepen discussion.
 ![app image of sample output](img/output.png)
 
 ## Architecture
