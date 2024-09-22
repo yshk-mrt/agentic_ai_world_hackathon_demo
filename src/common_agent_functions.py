@@ -38,7 +38,7 @@ async def send_message_to_openai(ctx: Context, msg: Request, system_prompt: str)
     ctx.logger.info(f"Response: {response_text}")
     return response_text
 
-async def handle_message(ctx: Context, sender: str, msg: Request, system_prompt: str):
+async def handle_message_common(ctx: Context, sender: str, msg: Request, system_prompt: str):
     ctx.logger.info(f"Received message from {sender}: {msg.message}")
     
     try:
