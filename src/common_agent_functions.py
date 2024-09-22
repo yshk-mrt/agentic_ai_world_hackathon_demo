@@ -1,3 +1,8 @@
+import logging
+
+# httpxのログレベルを警告以上に設定
+logging.getLogger("httpx").setLevel(logging.WARNING)
+
 from uagents import Context, Model
 from typing import Any
 from openai import OpenAI
@@ -38,16 +43,14 @@ async def send_message_to_openai(ctx: Context, msg: Request, system_prompt: str)
     ctx.logger.info(f"Response: {response_text}")
     return response_text
 
-async def handle_message_common(ctx: Context, sender: str, msg: Request, system_prompt: str):
-    ctx.logger.info(f"Received message from {sender}: {msg.message}")
+async def handle_message_common(ctx: Context, sender: str, msg: Request, system_prompt: str, name: str):
     
     try:
         response = await send_message_to_openai(ctx, msg, system_prompt)
         
-        if response:
-            await ctx.send(sender, Request(message=response))
-        else:
-            await ctx.send(sender, Request(message="Sorry, I couldn't process your request."))
+        response_msg = f"{msg.message}\n\n{name}: {response}"
+        
+        await ctx.send(sender, Request(message=response_msg))
     
     except Exception as e:
         ctx.logger.error(f"Error processing message: {str(e)}")

@@ -1,5 +1,5 @@
 from uagents import Agent, Context
-from src.common_agent_functions import Request, handle_message_common
+from common_agent_functions import Request, handle_message_common
 import os
 from dotenv import load_dotenv
 
@@ -20,8 +20,9 @@ agent = Agent(
 
 @agent.on_message(model=Request)
 async def handle_message(ctx: Context, sender: str, msg: Request):
-    await handle_message_common(ctx, sender, msg, SYSTEM_PROMPT)
+    msg.message = f"{msg.message}\n\n{NAME}: "
+    await handle_message_common(ctx, sender, msg, SYSTEM_PROMPT, NAME)
 
 if __name__ == "__main__":
-    print(f"Trump agent address: {agent.address}")
+    #print(f"address: {agent.address}")
     agent.run()

@@ -6,12 +6,12 @@ LOG_FILE="agents_log.txt"
 
 > $LOG_FILE
 
-python src/haris_agent.py >> $LOG_FILE 2>&1 &
+python src/trump_agent.py >> $LOG_FILE 2>&1 &
 HARIS_PID=$!
 
 sleep 5
 
-python src/trump_agent.py >> $LOG_FILE 2>&1 &
+python src/haris_agent.py >> $LOG_FILE 2>&1 &
 TRUMP_PID=$!
 
 tail -f $LOG_FILE &
