@@ -11,5 +11,41 @@ Utilized the Fetch.AI framework to host and manage multiple agents
 Implemented tool capabilities using ToolHouse.ai
 Powered by Llama language model hosted on Groq
 
+## Setup
+
+1. Clone the repository:
+   ```
+   git clone https://github.com/yshk-mrt/agentic_ai_world_hackathon_demo.git
+   cd agentic_ai_world_hackathon_demo
+   ```
+
+2. Create and activate a Python virtual environment:
+   ```
+   python -m venv .venv
+   source .venv/bin/activate  # For Linux
+   # or
+   .venv\Scripts\activate  # For Windows
+   ```
+
+3. Install required packages:
+   ```
+   pip install -r requirements.txt
+   ```
+
+4. Create a `.env` file and set up necessary environment variables:
+   ```
+   cp .env.sample .env
+   ```
+   Edit the `.env` file and set appropriate values.
+
+5. Run the agents:
+   ```
+   ./run_agents.sh
+   ```
+
+## Sample output
+**This output is a naive implementation that directly uses LLM output, and does not guarantee any political legitimacy. Please enjoy it as complete fiction.**
+![app image of sample output](img/output.png)
+
 ## Architecture
-![app image of negotiation mastery](img/architecture.png)
+![app image of architecture](img/architecture.png)
