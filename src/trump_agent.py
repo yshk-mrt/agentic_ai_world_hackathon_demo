@@ -9,7 +9,7 @@ SYSTEM_PROMPT = os.getenv('A2_SYSTEM_PROMPT')
 SEED = os.getenv('A2_SEED')
 NAME = os.getenv('A2_NAME')
 PORT = int(os.getenv('A2_PORT'))
-OPPONENT_ADDRESS = os.getenv('A2_OPPONENT_ADDRESS')
+A0_ADDRESS = os.getenv('A0_ADDRESS')
 
 agent = Agent(
     name=NAME,
@@ -20,8 +20,12 @@ agent = Agent(
 
 @agent.on_message(model=Request)
 async def handle_message(ctx: Context, sender: str, msg: Request):
-    msg.message = f"{msg.message}\n\n{NAME}: "
-    await handle_message_common(ctx, sender, msg, SYSTEM_PROMPT, NAME)
+    if sender != A0_ADDRESS:
+        return
+    #else:
+    #    ctx.logger.info(f"Message received from: '{sender}'")
+    
+    await handle_message_common(ctx, A0_ADDRESS, msg, SYSTEM_PROMPT, NAME)
 
 if __name__ == "__main__":
     #print(f"address: {agent.address}")

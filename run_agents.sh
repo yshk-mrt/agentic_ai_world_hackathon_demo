@@ -9,15 +9,18 @@ LOG_FILE="agents_log.txt"
 python src/trump_agent.py >> $LOG_FILE 2>&1 &
 HARIS_PID=$!
 
-sleep 5
-
-python src/haris_agent.py >> $LOG_FILE 2>&1 &
+python src/harris_agent.py >> $LOG_FILE 2>&1 &
 TRUMP_PID=$!
+
+sleep 10
+
+python src/moderation_agent.py >> $LOG_FILE 2>&1 &
+MODERATION_PID=$!
 
 tail -f $LOG_FILE &
 TAIL_PID=$!
 
-trap 'kill $HARIS_PID $TRUMP_PID $TAIL_PID; exit' INT
+trap 'kill $HARIS_PID $TRUMP_PID $MODERATION_PID $TAIL_PID; exit' INT
 
 while true; do
     sleep 1

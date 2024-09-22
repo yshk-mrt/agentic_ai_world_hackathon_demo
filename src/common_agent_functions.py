@@ -31,7 +31,7 @@ async def send_message_to_openai(ctx: Context, msg: Request, system_prompt: str)
             }
         ],
         temperature=1,
-        max_tokens=2048,
+        max_tokens=128,
         top_p=1,
         frequency_penalty=0,
         presence_penalty=0,
@@ -50,8 +50,8 @@ async def handle_message_common(ctx: Context, sender: str, msg: Request, system_
         
         response_msg = f"{msg.message}\n\n{name}: {response}"
         
-        await ctx.send(sender, Request(message=response_msg))
+        await ctx.send(sender, Request(message=response_msg), sync=True)
     
     except Exception as e:
         ctx.logger.error(f"Error processing message: {str(e)}")
-        await ctx.send(sender, Request(message="An error occurred while processing your message."))
+        await ctx.send(sender, Request(message="An error occurred while processing your message."), sync=True)
